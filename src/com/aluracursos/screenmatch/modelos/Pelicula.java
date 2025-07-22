@@ -1,29 +1,13 @@
-public class Pelicula {
-    String nombre;
-    int fechaDeLanzamiento;
-    int duracionEnMinutos;
-    boolean incluidoEnElPlan;
-    private double sumaDeLasEvaluaciones;
-    private int totalDeLasEvaluaciones;
+package com.aluracursos.screenmatch.modelos;
 
-    int getTotalDeLasEvaluaciones(){
-        return totalDeLasEvaluaciones;
+public class Pelicula extends Titulo {
+    private String director;
+
+    public String getDirector() {
+        return director;
     }
 
-
-    void muestraFichaTecica(){
-        System.out.println("El nombre de la película es:  " + nombre);
-        System.out.println("Su fecha de lanzamiento es: " + fechaDeLanzamiento);
-        System.out.println("La duración es de: " + duracionEnMinutos +  " minutos");
+    public void setDirector(String director) {
+        this.director = director;
     }
-
-    void evaluacion(double nota){
-        sumaDeLasEvaluaciones += nota;
-        totalDeLasEvaluaciones ++;
-    }
-
-    double calculaMedia(){
-        return sumaDeLasEvaluaciones/totalDeLasEvaluaciones;
-    }
-
 }
