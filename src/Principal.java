@@ -1,9 +1,13 @@
+import com.aluracursos.screenmatch.calculos.CalculadoraDeTiempo;
+import com.aluracursos.screenmatch.calculos.FiltroRecomendacion;
+import com.aluracursos.screenmatch.modelos.Episodio;
 import com.aluracursos.screenmatch.modelos.Pelicula;
 import com.aluracursos.screenmatch.modelos.Serie;
 
 public class Principal {
 
     public static void main(String[] args) {
+
         Pelicula miPelicula = new Pelicula();
         miPelicula.setNombre("Encanto");
         miPelicula.setFechaDeLanzamiento(2021);
@@ -26,6 +30,37 @@ public class Principal {
         casaDragon.setMinutosPorEpisodio(50);
         casaDragon.setEpisodiosPorTemporadas(10);
         casaDragon.muestraFichaTecica();
+
+        Pelicula otraPelicula = new Pelicula();
+        otraPelicula.setNombre("Matrix");
+        otraPelicula.setFechaDeLanzamiento(1998);
+        otraPelicula.setDuracionEnMinutos(180);
+
+        CalculadoraDeTiempo calculadora = new CalculadoraDeTiempo();
+        calculadora.incluye(miPelicula);
+        calculadora.incluye(casaDragon);
+        calculadora.incluye(otraPelicula);
+        System.out.println("Tiempo necesario para ver tus títulos favoritos "
+                + calculadora.getTiempoTotal()+ " minutos");
+
+        FiltroRecomendacion filtroRecomendacion = new FiltroRecomendacion();
+        filtroRecomendacion.filtra(miPelicula);
+
+        Episodio episodio = new Episodio();
+        episodio.setNumero(1);
+        episodio.setNombre("La casa Targaryen");
+        episodio.setSerie(casaDragon);
+        episodio.setTotalVisualizaciones(50);
+
+        filtroRecomendacion.filtra(episodio);
+
+
+
+
+
+
+
+
 
     }
 }
