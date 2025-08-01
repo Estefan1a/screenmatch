@@ -1,16 +1,11 @@
 package com.aluracursos.screenmatch.principal;
-
 import com.aluracursos.screenmatch.calculos.CalculadoraDeTiempo;
 import com.aluracursos.screenmatch.calculos.FiltroRecomendacion;
 import com.aluracursos.screenmatch.modelos.Episodio;
 import com.aluracursos.screenmatch.modelos.Pelicula;
 import com.aluracursos.screenmatch.modelos.Serie;
 import com.aluracursos.screenmatch.modelos.Titulo;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class PrincipalConListas {
     public static void main(String[] args) {
@@ -52,16 +47,6 @@ public class PrincipalConListas {
 
         lista.sort(Comparator.comparing(Titulo::getFechaDeLanzamiento));
         System.out.println("Lista ordenada pro fecha: " + lista);
-
-
-
-
-
-
-
-
-
-
 
     }
 }
