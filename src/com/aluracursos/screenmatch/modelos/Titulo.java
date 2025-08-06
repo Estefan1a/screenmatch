@@ -1,26 +1,35 @@
 package com.aluracursos.screenmatch.modelos;
 
+import com.aluracursos.screenmatch.excepcion.ErrorDeConversionDeDuracionExeption;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Collection;
 
 public class Titulo implements Comparable <Titulo> {
-    @SerializedName("Title")
+
     private String nombre;
-    @SerializedName("Year")
     private int fechaDeLanzamiento;
-    //@SerializedName("")
     private int duracionEnMinutos;
-    //@SerializedName("")
     private boolean incluidoEnElPlan;
-    //@SerializedName("")
     private double sumaDeLasEvaluaciones;
-    //@SerializedName("")
     private int totalDeLasEvaluaciones;
 
     public Titulo(String nombre, int fechaDeLanzamiento) {
         this.nombre = nombre;
         this.fechaDeLanzamiento = fechaDeLanzamiento;
+    }
+
+    public Titulo(TituloOmdb miTituloOmdb) {
+        this.nombre=miTituloOmdb.title();
+        this.fechaDeLanzamiento = Integer.valueOf(miTituloOmdb.year());
+        if(miTituloOmdb.runtime().contains("N/A")){
+            throw new ErrorDeConversionDeDuracionExeption("No fue posible convertir la duración, " +
+                    "ya que contiene N/A");
+
+        }
+        this.duracionEnMinutos = Integer.valueOf(miTituloOmdb.runtime()
+                .substring(0,3).replace(" ", "")); //Para obtener sólo los 3 primeros caracteres de ese Sting
+
     }
 
     public String getNombre() {
@@ -81,7 +90,8 @@ public class Titulo implements Comparable <Titulo> {
 
     @Override
     public String toString() {
-        return "nombre='" + nombre + '\'' +
-                ", fechaDeLanzamiento=" + fechaDeLanzamiento;
+        return "(nombre ='" + nombre +
+                ", fechaDeLanzamiento =" + fechaDeLanzamiento+
+                ", duración en minutos =" + duracionEnMinutos + " min)";
     }
 }
